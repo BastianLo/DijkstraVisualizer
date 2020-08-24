@@ -12,6 +12,8 @@ namespace DijkstraVisualizer
         private Point _location;
         public List<Node> Connections;
         public Ellipse VisualNode = new Ellipse();
+        public double Distance;
+        public List<Node> OriginNodes = new List<Node>();
 
         public Node(Point location)
         {

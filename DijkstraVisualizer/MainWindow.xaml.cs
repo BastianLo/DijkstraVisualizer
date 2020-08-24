@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Printing;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -49,13 +50,9 @@ namespace DijkstraVisualizer
                     //Check if User clicked on a node
                     if (targetNode != null)
                     {
-                        Trace.WriteLine("Mouse: " + e.GetPosition(this));
-                        Trace.WriteLine("Node: " + selectedNode.GetLocation());
 
                         if (Math.Abs(selectedNode.GetLocation().X - e.GetPosition(this).X) < 10 && Math.Abs(selectedNode.GetLocation().Y - e.GetPosition(this).Y) < 10)
-                        {
-                            Trace.WriteLine("ERROR");
-                        }
+                        { }
                         else
                         {
                             //Check if Connection already exists
@@ -63,6 +60,7 @@ namespace DijkstraVisualizer
                             {
                                 //Create Visual Connection
                                 var connection = new Line();
+                                MainNetwork.VisualConnections.Add(connection);
                                 connection.X1 = selectedNode.GetLocation().X;
                                 connection.X2 = targetNode.GetLocation().X;
                                 connection.Y1 = selectedNode.GetLocation().Y;
@@ -85,6 +83,35 @@ namespace DijkstraVisualizer
                     }
                 }
             }
+
+            if (buttonSelection == "FindRoute")
+            {
+                //Check if First or Second Click
+                if (selectedNode == null)
+                {
+                    selectedNode = MainNetwork.FindNode(e.GetPosition(this));
+                    if (selectedNode != null)
+                        selectedNode.VisualNode.Fill = new SolidColorBrush(Color.FromRgb(0, 190, 0));
+                }
+                else
+                {
+                    var targetNode = MainNetwork.FindNode(e.GetPosition(this));
+                    //Check if User clicked on a node
+                    if (targetNode != null)
+                    {
+
+                        if (Math.Abs(selectedNode.GetLocation().X - e.GetPosition(this).X) < 10 && Math.Abs(selectedNode.GetLocation().Y - e.GetPosition(this).Y) < 10)
+                        { }
+                        else
+                        {
+                            MainNetwork.FindConnection(selectedNode, targetNode);
+                            selectedNode = null;
+
+                        }
+
+                    }
+                }
+            }
         }
 
         private void BtnClearNetwork_OnClick(object sender, RoutedEventArgs e)
@@ -101,16 +128,31 @@ namespace DijkstraVisualizer
         private void BtnAddNode_OnClick(object sender, RoutedEventArgs e)
         {
             buttonSelection = "AddNode";
+            if (selectedNode != null)
+            {
+                selectedNode.VisualNode.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                selectedNode = null;
+            }
         }
 
         private void BtnAddConnection_OnClick(object sender, RoutedEventArgs e)
         {
             buttonSelection = "AddConnection";
+            if (selectedNode != null)
+            {
+                selectedNode.VisualNode.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                selectedNode = null;
+            }
         }
 
         private void BtnFindRoute_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            buttonSelection = "FindRoute";
+            if (selectedNode != null)
+            {
+                selectedNode.VisualNode.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                selectedNode = null;
+            }
         }
 
         private void MainGrid_OnMouseRightButtonDown(object sender, MouseButtonEventArgs e)
