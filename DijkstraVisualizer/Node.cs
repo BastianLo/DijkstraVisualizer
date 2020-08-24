@@ -19,7 +19,6 @@ namespace DijkstraVisualizer
         {
             _location = location;
             Connections = new List<Node>();
-
         }
 
         public void Visualize(Canvas drawCanvas)

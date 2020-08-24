@@ -49,20 +49,9 @@
                     </Button>
 
                     <Button Height="100" Width="125" FontSize="20" Name="BtnCreateRandom" Click="BtnCreateRandom_OnClick">
-                        <TextBlock TextWrapping="Wrap">Create Random Nodes</TextBlock>
+                        <TextBlock TextWrapping="Wrap">Create Random Network</TextBlock>
                     </Button>
                 </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Button Height="100" Width="125" FontSize="20" Name="BtnNetworkImport" Click="BtnNetworkImport_OnClick">
-                        <TextBlock TextWrapping="Wrap">Import Network</TextBlock>
-                    </Button>
-
-                    <Button Height="100" Width="125" FontSize="20" Name="BtnNetworkExport" Click="BtnNetworkExport_OnClick">
-                        <TextBlock TextWrapping="Wrap">Export Network</TextBlock>
-                    </Button>
-                </StackPanel>
-
                 <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="TextBlockCurrentSelection" FontSize="20" FontWeight="Bold"></TextBlock>
             </StackPanel>
         </Grid>
