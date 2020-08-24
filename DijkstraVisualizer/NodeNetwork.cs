@@ -75,6 +75,19 @@ namespace DijkstraVisualizer
                         }
                     }
                 }
+
+                if (nextTargetNode == null || newNodes.Distinct().Count() != newNodes.Count)
+                {
+
+                    var errorResult = MessageBox.Show("No route has been found. Nodes are not connected", "No route found");
+                    if (errorResult == MessageBoxResult.OK)
+                    {
+                        ResetNetwork();
+                        visualRouteConnections.ForEach(c => _DrawCanvas.Children.Remove(c));
+                        return;
+
+                    }
+                }
                 nextOriginNode.OriginNodes.ForEach(c => nextTargetNode.OriginNodes.Add(c));
                 nextTargetNode.OriginNodes.Add(nextOriginNode);
                 newNodes.Add(nextTargetNode);
@@ -91,12 +104,6 @@ namespace DijkstraVisualizer
                 newConnection.StrokeThickness = 4;
                 _DrawCanvas.Children.Add(newConnection);
 
-
-                if (newNodes.Distinct().Count() != newNodes.Count)
-                {
-                    Trace.WriteLine("NOT FOUND");
-                    return;
-                }
 
             }
 
