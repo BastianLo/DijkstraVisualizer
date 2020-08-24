@@ -14,7 +14,7 @@ namespace DijkstraVisualizer
 {
     class NodeNetwork
     {
-        private List<Node> Nodes;
+        public List<Node> Nodes;
         private Canvas _DrawCanvas;
         public List<Line> VisualConnections;
 
@@ -100,7 +100,7 @@ namespace DijkstraVisualizer
                 newConnection.Y1 = nextOriginNode.GetLocation().Y;
                 newConnection.X2 = nextTargetNode.GetLocation().X;
                 newConnection.Y2 = nextTargetNode.GetLocation().Y;
-                newConnection.Stroke = new SolidColorBrush(Color.FromRgb(190, 0, 0));
+                newConnection.Stroke = new SolidColorBrush(Color.FromRgb(240, 0, 0));
                 newConnection.StrokeThickness = 4;
                 _DrawCanvas.Children.Add(newConnection);
 

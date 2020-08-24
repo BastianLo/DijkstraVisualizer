@@ -43,6 +43,16 @@
                     </Button>
                 </StackPanel>
 
+                <StackPanel Orientation="Horizontal">
+                    <Button Height="100" Width="125" FontSize="20" Name="BtnAutoConnect" Click="BtnAutoConnect_OnClick">
+                        <TextBlock TextWrapping="Wrap">Auto Connect</TextBlock>
+                    </Button>
+
+                    <Button Height="100" Width="125" FontSize="20" Name="BtnCreateRandom" Click="BtnCreateRandom_OnClick">
+                        <TextBlock TextWrapping="Wrap">Create Random Network</TextBlock>
+                    </Button>
+                </StackPanel>
+
             </StackPanel>
         </Grid>
     </Grid>

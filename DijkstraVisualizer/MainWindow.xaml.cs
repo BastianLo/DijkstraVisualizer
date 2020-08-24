@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Linq;
 using System.Printing;
@@ -162,6 +163,41 @@ namespace DijkstraVisualizer
                 selectedNode.VisualNode.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0));
                 selectedNode = null;
             }
+        }
+
+        private void BtnAutoConnect_OnClick(object sender, RoutedEventArgs e)
+        {
+            var distance = 0d;
+            var inputDialog = new NumberInputWindow("Please give the max. distance between connected nodes", 0);
+            if (inputDialog.ShowDialog() == true)
+                distance = inputDialog.Answer;
+
+            foreach (var iNode in MainNetwork.Nodes)
+            {
+                foreach (var jNode in MainNetwork.Nodes)
+                {
+                    if (iNode != jNode && Node.GetDistance(iNode, jNode) < distance && !iNode.Connections.Contains(jNode) && !jNode.Connections.Contains(iNode))
+                    {
+                        iNode.Connections.Add(jNode);
+                        jNode.Connections.Add(iNode);
+                        //Create Visual Connection
+                        var connection = new Line();
+                        MainNetwork.VisualConnections.Add(connection);
+                        connection.X1 = iNode.GetLocation().X;
+                        connection.X2 = jNode.GetLocation().X;
+                        connection.Y1 = iNode.GetLocation().Y;
+                        connection.Y2 = jNode.GetLocation().Y;
+                        connection.Stroke = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                        connection.StrokeThickness = 4;
+                        DrawCanvas.Children.Add(connection);
+                    }
+                }
+            }
+        }
+
+        private void BtnCreateRandom_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
