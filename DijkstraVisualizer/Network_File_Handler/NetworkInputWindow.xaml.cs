@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,21 +19,26 @@ namespace DijkstraVisualizer
     public partial class NetworkInputWindow : Window
     {
 
-        public NetworkInputWindow(string question)
+        public NetworkInputWindow()
         {
             InitializeComponent();
-            lblQuestion.Content = question;
+
+            foreach (var file in Directory.GetFiles("Networks"))
+            {
+                ListBoxFiles.Items.Add(file.Substring(file.IndexOf("\\") + 1).Replace(".txt", ""));
+            }
+
         }
 
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            txtAnswer.Focus();
+            ListBoxFiles.Focus();
         }
 
-        public double Answer
+        public string Answer
         {
-            get { return txtAnswer.Value; }
+            get { return ListBoxFiles.SelectedItem.ToString(); }
         }
 
         private void BtnDialogOk_OnClick(object sender, RoutedEventArgs e)

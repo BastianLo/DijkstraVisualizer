@@ -6,16 +6,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Update="Network_File_Handler\NetworkInputWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Network_File_Handler\NetworkInputWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-
 </Project>

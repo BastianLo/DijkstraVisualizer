@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DijkstraVisualizer.Network_File_Handler;
 
 namespace DijkstraVisualizer
 {
@@ -234,16 +235,26 @@ namespace DijkstraVisualizer
 
         private void BtnNetworkImport_OnClick(object sender, RoutedEventArgs e)
         {
-            var inputDialog = new NetworkInputWindow("Select File");
+            var filename = "";
+            var inputDialog = new NetworkInputWindow();
             if (inputDialog.ShowDialog() == true)
             {
-
+                filename = inputDialog.Answer;
+                NetworkFileHandler.ImportNetwork(ref MainNetwork, "Networks\\" + filename + ".txt", DrawCanvas);
             }
         }
 
         private void BtnNetworkExport_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var filename = "";
+            var inputDialog = new FileNameInputWindow("FileName");
+            if (inputDialog.ShowDialog() == true)
+            {
+                filename = inputDialog.Answer;
+                Trace.WriteLine(filename);
+                NetworkFileHandler.ExportNetwork(MainNetwork, "Networks\\" + filename + ".txt");
+            }
+
         }
     }
 }
