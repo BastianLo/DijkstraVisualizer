@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace DijkstraVisualizer
 {
@@ -22,10 +24,10 @@ namespace DijkstraVisualizer
         public NetworkInputWindow()
         {
             InitializeComponent();
-
-            foreach (var file in Directory.GetFiles("Networks"))
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Substring(0, AppDomain.CurrentDomain.BaseDirectory.LastIndexOf("DijkstraVisualizer")), @"Networks");
+            foreach (var file in Directory.GetFiles(path))
             {
-                ListBoxFiles.Items.Add(file.Substring(file.IndexOf("\\") + 1).Replace(".txt", ""));
+                ListBoxFiles.Items.Add(file.Substring(file.LastIndexOf("\\") + 1).Replace(".txt", ""));
             }
 
         }
@@ -38,7 +40,7 @@ namespace DijkstraVisualizer
 
         public string Answer
         {
-            get { return ListBoxFiles.SelectedItem.ToString(); }
+            get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory.Substring(0, AppDomain.CurrentDomain.BaseDirectory.LastIndexOf("DijkstraVisualizer")), @"Networks") + "\\" + ListBoxFiles.SelectedItem.ToString(); }
         }
 
         private void BtnDialogOk_OnClick(object sender, RoutedEventArgs e)

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DijkstraVisualizer.Network_File_Handler;
+using Path = System.IO.Path;
 
 namespace DijkstraVisualizer
 {
@@ -251,8 +252,7 @@ namespace DijkstraVisualizer
             if (inputDialog.ShowDialog() == true)
             {
                 filename = inputDialog.Answer;
-                Trace.WriteLine(filename);
-                NetworkFileHandler.ExportNetwork(MainNetwork, "Networks\\" + filename + ".txt");
+                NetworkFileHandler.ExportNetwork(MainNetwork, filename + ".txt");
             }
 
         }

@@ -26,7 +26,10 @@ namespace DijkstraVisualizer
                 }
                 lines.Add(line);
             }
-
+            Trace.WriteLine(fileName);
+            var filepath = AppDomain.CurrentDomain.BaseDirectory.Substring(0, AppDomain.CurrentDomain.BaseDirectory.LastIndexOf("DijkstraVisualizer")) + "\\Networks\\";
+            fileName = filepath + fileName;
+            Trace.WriteLine(fileName);
             File.WriteAllLines(fileName, lines);
         }
 
@@ -34,6 +37,7 @@ namespace DijkstraVisualizer
         {
             network.Nodes.Clear();
             drawCanvas.Children.Clear();
+            fileName = fileName.Substring(fileName.LastIndexOf("C:\\"));
             var lines = File.ReadAllLines(fileName);
             foreach (var line in lines)
             {
