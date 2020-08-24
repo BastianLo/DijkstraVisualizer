@@ -171,7 +171,7 @@ namespace DijkstraVisualizer
         private void BtnAutoConnect_OnClick(object sender, RoutedEventArgs e)
         {
             var distance = 0d;
-            var inputDialog = new NumberInputWindow("Please give the max. distance between connected nodes", 0);
+            var inputDialog = new NumberInputWindow("Please give the max. distance between connected nodes", 0, 1000, 0);
             if (inputDialog.ShowDialog() == true)
                 distance = inputDialog.Answer;
 
@@ -200,13 +200,50 @@ namespace DijkstraVisualizer
 
         private void BtnCreateRandom_OnClick(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Do you want to delete the current network and create an new random Network?", "Delete & create network",
-                MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            var count = 0d;
+            var inputDialog = new NumberInputWindow("Select Node count", 0, 300, 0);
+            if (inputDialog.ShowDialog() == true)
             {
+                count = inputDialog.Answer;
                 DrawCanvas.Children.Clear();
                 MainNetwork = new NodeNetwork(DrawCanvas);
+
             }
+
+            while (MainNetwork.Nodes.Count < count)
+            {
+                var rnd = new Random();
+                var x = rnd.Next(0, 1670);
+                var y = rnd.Next(0, 1000);
+                var canPlace = true;
+
+                foreach (var iNode in MainNetwork.Nodes)
+                {
+                    if (Math.Sqrt(Math.Pow(iNode.GetLocation().X - x, 2) +
+                                  Math.Pow(iNode.GetLocation().Y - y, 2)) < 25)
+                    {
+                        canPlace = false;
+                    }
+                }
+
+                if (canPlace)
+                    MainNetwork.AddNode(new Node(new Point(x, y)));
+
+            }
+        }
+
+        private void BtnNetworkImport_OnClick(object sender, RoutedEventArgs e)
+        {
+            var inputDialog = new NetworkInputWindow("Select File");
+            if (inputDialog.ShowDialog() == true)
+            {
+
+            }
+        }
+
+        private void BtnNetworkExport_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

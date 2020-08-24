@@ -15,16 +15,13 @@ namespace DijkstraVisualizer
     /// <summary>
     /// Interaktionslogik für NumberInputWindow.xaml
     /// </summary>
-    public partial class NumberInputWindow : Window
+    public partial class NetworkInputWindow : Window
     {
 
-        public NumberInputWindow(string question, int min, int max, double defaultNumber = 0)
+        public NetworkInputWindow(string question)
         {
             InitializeComponent();
             lblQuestion.Content = question;
-            txtAnswer.Value = defaultNumber;
-            txtAnswer.Minimum = min;
-            txtAnswer.Maximum = max;
         }
 
 
