@@ -52,7 +52,7 @@
                         <TextBlock TextWrapping="Wrap">Create Random Network</TextBlock>
                     </Button>
                 </StackPanel>
-
+                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="TextBlockCurrentSelection" FontSize="20" FontWeight="Bold"></TextBlock>
             </StackPanel>
         </Grid>
     </Grid>

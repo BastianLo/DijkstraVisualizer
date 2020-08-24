@@ -128,6 +128,7 @@ namespace DijkstraVisualizer
 
         private void BtnAddNode_OnClick(object sender, RoutedEventArgs e)
         {
+            TextBlockCurrentSelection.Text = "Add Node";
             buttonSelection = "AddNode";
             if (selectedNode != null)
             {
@@ -138,6 +139,7 @@ namespace DijkstraVisualizer
 
         private void BtnAddConnection_OnClick(object sender, RoutedEventArgs e)
         {
+            TextBlockCurrentSelection.Text = "Add Connection";
             buttonSelection = "AddConnection";
             if (selectedNode != null)
             {
@@ -148,6 +150,7 @@ namespace DijkstraVisualizer
 
         private void BtnFindRoute_OnClick(object sender, RoutedEventArgs e)
         {
+            TextBlockCurrentSelection.Text = "Find Route";
             buttonSelection = "FindRoute";
             if (selectedNode != null)
             {
@@ -197,7 +200,13 @@ namespace DijkstraVisualizer
 
         private void BtnCreateRandom_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var result = MessageBox.Show("Do you want to delete the current network and create an new random Network?", "Delete & create network",
+                MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                DrawCanvas.Children.Clear();
+                MainNetwork = new NodeNetwork(DrawCanvas);
+            }
         }
     }
 }
