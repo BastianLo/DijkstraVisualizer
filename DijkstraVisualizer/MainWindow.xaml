@@ -49,7 +49,7 @@
                     </Button>
 
                     <Button Height="100" Width="125" FontSize="20" Name="BtnCreateRandom" Click="BtnCreateRandom_OnClick">
-                        <TextBlock TextWrapping="Wrap">Create Random Network</TextBlock>
+                        <TextBlock TextWrapping="Wrap">Create Random Nodes</TextBlock>
                     </Button>
                 </StackPanel>
                 <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="TextBlockCurrentSelection" FontSize="20" FontWeight="Bold"></TextBlock>

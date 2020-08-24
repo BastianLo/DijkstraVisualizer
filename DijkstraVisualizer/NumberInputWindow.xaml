@@ -23,7 +23,7 @@
 
 
         <Label Name="lblQuestion" Grid.Column="1">Question:</Label>
-        <Slider Minimum="0" Maximum="1000" Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="1"></Slider>
+        <Slider Minimum="0" Maximum="1000" Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="1" SmallChange="1" TickFrequency="1"></Slider>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
             <Button IsDefault="True" Name="btnDialogOk" Click="BtnDialogOk_OnClick"  MinWidth="60" Margin="0,0,10,0">_Ok</Button>
             <Button IsCancel="True" MinWidth="60">_Cancel</Button>
